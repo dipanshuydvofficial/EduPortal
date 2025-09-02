@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPortal - Class Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1a237e 100%);
+            color: #e0e0d1;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Logo Section */
+        .logo-container {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo-frame {
+            display: inline-block;
+            padding: 15px;
+            background: rgba(26, 35, 126, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 111, 97, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(255, 111, 97, 0.4);
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 15px;
+            object-fit: contain;
+            background: #1a237e;
+            padding: 10px;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6f61, transparent);
+            margin: 30px 0;
+            border-radius: 50%;
+        }
+
+        /* Classes Section */
+        .classes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .class-card {
+            background: rgba(26, 35, 126, 0.7);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(77, 182, 172, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 111, 97, 0.4);
+            border-color: rgba(255, 111, 97, 0.5);
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6f61, #4db6ac);
+        }
+
+        .class-icon {
+            font-size: 70px;
+            margin-bottom: 25px;
+            color: #ff6f61;
+            text-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
+        }
+
+        .class-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #e0e0d1;
+            font-weight: 700;
+        }
+
+        .class-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #d0d0c0;
+        }
+
+        .access-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6f61, #4db6ac);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .access-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 111, 97, 0.6);
+        }
+
+        .access-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(26, 35, 126, 0.3);
+            border-top: 8px solid #ff6f61;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .class-card {
+                padding: 30px 20px;
+            }
+            
+            .class-title {
+                font-size: 2rem;
+            }
+            
+            .class-icon {
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .class-card {
+                padding: 25px 15px;
+            }
+            
+            .class-title {
+                font-size: 1.8rem;
+            }
+            
+            .class-description {
+                font-size: 1rem;
+            }
+            
+            .access-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            color: #a0a090;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="logo-container fade-in">
+            <div class="logo-frame">
+                <img src="https://i.ibb.co/kgkW866G/1.png" alt="EduPortal Logo" class="logo">
+            </div>
+        </div>
+
+        <!-- Separator Line -->
+        <div class="separator"></div>
+
+        <!-- Classes Section -->
+        <div class="classes-container">
+            <!-- Class 11th Card -->
+            <div class="class-card fade-in" style="animation-delay: 0.2s">
+                <div class="class-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h2 class="class-title">Class 11th</h2>
+                <p class="class-description">Access comprehensive study materials, video lectures, and practice tests for all subjects in Class 11th curriculum.</p>
+                <a href="class11.html" class="access-btn">Access Resources</a>
+            </div>
+
+            <!-- Class 12th Card -->
+            <div class="class-card fade-in" style="animation-delay: 0.4s">
+                <div class="class-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2 class="class-title">Class 12th</h2>
+                <p class="class-description">Prepare for board exams and competitive exams with our extensive resources for Class 12th students.</p>
+                <a href="class12.html" class="access-btn">Access Resources</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2023 EduPortal. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingOverlay = document.getElementById('loading');
+            
+            // Simulate loading time
+            setTimeout(function() {
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.style.visibility = 'hidden';
+                
+                // Add fade-in animation to content
+                document.querySelectorAll('.fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            }, 1500);
+        });
+
+        // Tap animations for mobile
+        document.querySelectorAll('.access-btn').forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            button.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Hover effect enhancement for touch devices
+        document.querySelectorAll('.class-card').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 40px rgba(255, 111, 97, 0.4)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>

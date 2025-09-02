@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Chemistry Class 12 - Chapters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1a237e 100%);
+            color: #e0e0d1;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #e0e0d1;
+            text-shadow: 0 0 10px rgba(77, 182, 172, 0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #d0d0c0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6f61, transparent);
+            margin: 30px 0;
+            border-radius: 50%;
+        }
+
+        /* Chapters List */
+        .chapters-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .chapter-list {
+            list-style: none;
+            counter-reset: chapter-counter;
+        }
+
+        .chapter-item {
+            background: rgba(26, 35, 126, 0.7);
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .chapter-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 111, 97, 0.4);
+            border-color: rgba(255, 111, 97, 0.5);
+        }
+
+        .chapter-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6f61, #4db6ac);
+        }
+
+        .chapter-item::after {
+            content: counter(chapter-counter);
+            counter-increment: chapter-counter;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: rgba(255, 111, 97, 0.3);
+        }
+
+        .chapter-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .chapter-icon {
+            font-size: 30px;
+            margin-right: 20px;
+            color: #ff6f61;
+            text-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .chapter-content {
+            flex: 1;
+        }
+
+        .chapter-name {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: #e0e0d1;
+            font-weight: 600;
+        }
+
+        .chapter-description {
+            font-size: 1rem;
+            color: #d0d0c0;
+            line-height: 1.6;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 70px;
+            height: 70px;
+            border: 6px solid rgba(26, 35, 126, 0.3);
+            border-top: 6px solid #ff6f61;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 30px;
+            background: rgba(26, 35, 126, 0.5);
+            color: #e0e0d1;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 111, 97, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            color: #a0a090;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .chapter-item {
+                padding: 20px 25px;
+            }
+            
+            .chapter-name {
+                font-size: 1.4rem;
+            }
+            
+            .chapter-icon {
+                font-size: 24px;
+                margin-right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .chapter-item {
+                padding: 18px 20px;
+            }
+            
+            .chapter-name {
+                font-size: 1.3rem;
+            }
+            
+            .chapter-icon {
+                font-size: 20px;
+                margin-right: 12px;
+            }
+            
+            .chapter-item::after {
+                font-size: 1.5rem;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- Back Button -->
+        <a href="class12.html" class="back-button fade-in"><i class="fas fa-arrow-left"></i> Back to Subjects</a>
+        
+        <!-- Header Section -->
+        <div class="header fade-in">
+            <h1 class="page-title">Physical Chemistry</h1>
+            <p class="page-subtitle">Class 12th - Explore detailed resources for each chapter in Physical Chemistry</p>
+        </div>
+
+        <!-- Separator Line -->
+        <div class="separator"></div>
+
+        <!-- Chapters Container -->
+        <div class="chapters-container">
+            <ul class="chapter-list">
+                <!-- Chapter 1: Solutions -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.1s">
+                    <a href="solutions.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Solutions</h3>
+                            <p class="chapter-description">Study the properties of solutions, types of solutions, concentration terms, and colligative properties.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 2: Chemical Kinetics -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.2s">
+                    <a href="chemical-kinetics.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Chemical Kinetics</h3>
+                            <p class="chapter-description">Learn about reaction rates, factors affecting rates, rate laws, and Arrhenius equation.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 3: Electrochemistry -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.3s">
+                    <a href="electrochemistry.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Electrochemistry</h3>
+                            <p class="chapter-description">Explore redox reactions, electrochemical cells, Nernst equation, and electrolytic conductance.</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2023 EduPortal. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingOverlay = document.getElementById('loading');
+            
+            // Simulate loading time
+            setTimeout(function() {
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.style.visibility = 'hidden';
+                
+                // Add fade-in animation to content
+                document.querySelectorAll('.fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 150);
+                });
+            }, 1200);
+        });
+
+        // Tap animations for mobile
+        document.querySelectorAll('.chapter-link').forEach(link => {
+            link.addEventListener('touchstart', function() {
+                this.parentElement.parentElement.style.transform = 'translateY(-5px)';
+                this.parentElement.parentElement.style.boxShadow = '0 12px 25px rgba(255, 111, 97, 0.4)';
+            });
+            
+            link.addEventListener('touchend', function() {
+                this.parentElement.parentElement.style.transform = 'translateY(0)';
+                this.parentElement.parentElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            });
+        });
+    </script>
+</body>
+</html>

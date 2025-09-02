@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12th - Subject Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1a237e 100%);
+            color: #e0e0d1;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #e0e0d1;
+            text-shadow: 0 0 10px rgba(77, 182, 172, 0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #d0d0c0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6f61, transparent);
+            margin: 30px 0;
+            border-radius: 50%;
+        }
+
+        /* Subjects Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .subject-card {
+            background: rgba(26, 35, 126, 0.7);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(255, 111, 97, 0.4);
+            border-color: rgba(255, 111, 97, 0.5);
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6f61, #4db6ac);
+        }
+
+        .subject-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #ff6f61;
+            text-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
+        }
+
+        .subject-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #e0e0d1;
+            font-weight: 600;
+        }
+
+        .subject-description {
+            font-size: 0.95rem;
+            color: #d0d0c0;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .access-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6f61, #4db6ac);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .access-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 111, 97, 0.6);
+        }
+
+        .access-link:active {
+            transform: scale(0.98);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 70px;
+            height: 70px;
+            border: 6px solid rgba(26, 35, 126, 0.3);
+            border-top: 6px solid #ff6f61;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 30px;
+            background: rgba(26, 35, 126, 0.5);
+            color: #e0e0d1;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 111, 97, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            color: #a0a090;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .subject-card {
+                padding: 20px 15px;
+            }
+            
+            .subject-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .subject-card {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button fade-in"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        
+        <!-- Header Section -->
+        <div class="header fade-in">
+            <h1 class="page-title">Class 12th Subjects</h1>
+            <p class="page-subtitle">Explore comprehensive resources for all your Class 12th science subjects. Click on any subject to access study materials.</p>
+        </div>
+
+        <!-- Separator Line -->
+        <div class="separator"></div>
+
+        <!-- Subjects Grid -->
+        <div class="subjects-grid">
+            <!-- Botany -->
+            <div class="subject-card fade-in" style="animation-delay: 0.1s">
+                <div class="subject-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3 class="subject-name">Botany</h3>
+                <p class="subject-description">Study plant life, structure, function, growth, evolution, and classification.</p>
+                <a href="botany12.html" class="access-link">Access Resources</a>
+            </div>
+
+            <!-- Zoology -->
+            <div class="subject-card fade-in" style="animation-delay: 0.2s">
+                <div class="subject-icon">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h3 class="subject-name">Zoology</h3>
+                <p class="subject-description">Explore the animal kingdom, behavior, physiology, and classification.</p>
+                <a href="zoology12.html" class="access-link">Access Resources</a>
+            </div>
+
+            <!-- Physics -->
+            <div class="subject-card fade-in" style="animation-delay: 0.3s">
+                <div class="subject-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h3 class="subject-name">Physics</h3>
+                <p class="subject-description">Understand matter, energy, motion, forces, and the fundamental laws of nature.</p>
+                <a href="physics12.html" class="access-link">Access Resources</a>
+            </div>
+
+            <!-- Physical Chemistry -->
+            <div class="subject-card fade-in" style="animation-delay: 0.4s">
+                <div class="subject-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3 class="subject-name">Physical Chemistry</h3>
+                <p class="subject-description">Study the physical properties and behavior of chemical systems.</p>
+                <a href="physical-chemistry12.html" class="access-link">Access Resources</a>
+            </div>
+
+            <!-- Inorganic Chemistry -->
+            <div class="subject-card fade-in" style="animation-delay: 0.5s">
+                <div class="subject-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <h3 class="subject-name">Inorganic Chemistry</h3>
+                <p class="subject-description">Explore the properties and behavior of inorganic compounds.</p>
+                <a href="inorganic-chemistry12.html" class="access-link">Access Resources</a>
+            </div>
+
+            <!-- Organic Chemistry -->
+            <div class="subject-card fade-in" style="animation-delay: 0.6s">
+                <div class="subject-icon">
+                    <i class="fas fa-molecule"></i>
+                </div>
+                <h3 class="subject-name">Organic Chemistry</h3>
+                <p class="subject-description">Study the structure, properties, and reactions of organic compounds.</p>
+                <a href="organic-chemistry12.html" class="access-link">Access Resources</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2023 EduPortal. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingOverlay = document.getElementById('loading');
+            
+            // Simulate loading time
+            setTimeout(function() {
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.style.visibility = 'hidden';
+                
+                // Add fade-in animation to content
+                document.querySelectorAll('.fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 150);
+                });
+            }, 1200);
+        });
+
+        // Tap animations for mobile
+        document.querySelectorAll('.access-link').forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            button.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Hover effect enhancement for touch devices
+        document.querySelectorAll('.subject-card').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 12px 25px rgba(255, 111, 97, 0.4)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            });
+        });
+    </script>
+</body>
+</html>
