@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - EduPortal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1a237e 100%);
+            color: #e0e0d1;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #e0e0d1;
+            text-shadow: 0 0 10px rgba(77, 182, 172, 0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #d0d0c0;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6f61, transparent);
+            margin: 30px 0;
+            border-radius: 50%;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(26, 35, 126, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(77, 182, 172, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4db6ac;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #e0e0d1;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6f61, #4db6ac);
+            border-radius: 3px;
+        }
+
+        .subsection-title {
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+            color: #d0d0c0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+            font-size: 1.05rem;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #4db6ac;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #ff6f61;
+        }
+
+        .contact-info {
+            background: rgba(20, 25, 80, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 15px;
+            color: #e0e0d1;
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 30px;
+            background: rgba(26, 35, 126, 0.5);
+            color: #e0e0d1;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 111, 97, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            color: #a0a090;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button fade-in"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        
+        <!-- Header Section -->
+        <div class="header fade-in">
+            <h1 class="page-title">Privacy Policy</h1>
+            <p class="page-subtitle">Your privacy is important to us. This policy explains how EduPortal collects, uses, and protects your personal information.</p>
+        </div>
+
+        <!-- Separator Line -->
+        <div class="separator"></div>
+
+        <!-- Content -->
+        <div class="content fade-in">
+            <div class="last-updated">Last Updated: November 2023</div>
+            
+            <div class="section">
+                <h2 class="section-title">Introduction</h2>
+                <p>At EduPortal, we are committed to protecting your privacy and ensuring transparency about how we collect, use, and safeguard your personal information. This Privacy Policy applies to all visitors, users, and others who access or use our website and services.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Information We Collect</h2>
+                
+                <h3 class="subsection-title">Personal Information</h3>
+                <p>We may collect personal information that you voluntarily provide to us when:</p>
+                <ul>
+                    <li>You fill out forms on our website, including contact forms, newsletter subscriptions, or resource requests</li>
+                    <li>You communicate with us via email or other channels</li>
+                    <li>You register for an account or access premium features</li>
+                </ul>
+                <p>This information may include your name, email address, phone number, educational details, and any other information you choose to provide.</p>
+                
+                <h3 class="subsection-title">Automatically Collected Information</h3>
+                <p>When you access our website, we automatically collect certain information about your device and usage, including:</p>
+                <ul>
+                    <li>IP address</li>
+                    <li>Browser type and version</li>
+                    <li>Operating system</li>
+                    <li>Referral URLs</li>
+                    <li>Pages viewed and time spent on our site</li>
+                    <li>Device information (type, settings, identifiers)</li>
+                    <li>Location data (approximate)</li>
+                </ul>
+                
+                <h3 class="subsection-title">Cookies and Tracking Technologies</h3>
+                <p>We use cookies and similar tracking technologies to enhance your experience and understand how our website is used. Cookies are small data files stored on your device that help us:</p>
+                <ul>
+                    <li>Remember your preferences and settings</li>
+                    <li>Analyze website traffic and user behavior</li>
+                    <li>Improve our content and services</li>
+                    <li>Deliver personalized advertisements</li>
+                </ul>
+                <p>You can control cookie preferences through your browser settings. Please note that disabling cookies may affect your experience on our website.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">How We Use Your Information</h2>
+                <p>We use the collected information for various purposes:</p>
+                <ul>
+                    <li>To provide, maintain, and improve our educational resources and services</li>
+                    <li>To personalize your learning experience</li>
+                    <li>To communicate with you, including responding to inquiries and sending updates</li>
+                    <li>To analyze usage patterns and optimize our website performance</li>
+                    <li>To detect, prevent, and address technical issues</li>
+                    <li>To comply with legal obligations</li>
+                    <li>To send you educational materials and updates (with your consent)</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Third-Party Services</h2>
+                
+                <h3 class="subsection-title">Google AdSense</h3>
+                <p>We use Google AdSense to display advertisements on our website. Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of the DART cookie enables it to serve ads to our users based on their visits to our site and other sites on the Internet.</p>
+                <p>You may opt out of the DART cookie by visiting the <a href="http://www.google.com/privacy_ads.html" target="_blank">Google ad and content network privacy policy</a>.</p>
+                
+                <h3 class="subsection-title">Analytics Services</h3>
+                <p>We use third-party analytics services, including Google Analytics, to understand how our website is used and to improve our services. These services may collect information about your use of our website, including your IP address, browser type, and pages viewed.</p>
+                
+                <h3 class="subsection-title">Other Third-Party Services</h3>
+                <p>We may also use other third-party services for payment processing, email delivery, content delivery, and other business purposes. These services have their own privacy policies governing how they collect and use your information.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Data Security</h2>
+                <p>We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+                <ul>
+                    <li>Secure Socket Layer (SSL) encryption</li>
+                    <li>Regular security assessments</li>
+                    <li>Access controls and authentication procedures</li>
+                    <li>Employee training on data protection</li>
+                </ul>
+                <p>However, please note that no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Your Rights and Choices</h2>
+                <p>Depending on your location, you may have certain rights regarding your personal information:</p>
+                <ul>
+                    <li><strong>Access</strong>: You can request copies of the personal information we hold about you</li>
+                    <li><strong>Correction</strong>: You can request correction of inaccurate or incomplete information</li>
+                    <li><strong>Deletion</strong>: You can request deletion of your personal information, subject to certain exceptions</li>
+                    <li><strong>Objection</strong>: You can object to certain processing of your personal information</li>
+                    <li><strong>Restriction</strong>: You can request restriction of processing in certain circumstances</li>
+                    <li><strong>Data Portability</strong>: You can request a copy of your data in a structured, machine-readable format</li>
+                </ul>
+                <p>To exercise these rights, please contact us using the information provided below. We will respond to your request in accordance with applicable laws.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Data Retention</h2>
+                <p>We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Children's Privacy</h2>
+                <p>Our services are not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">International Data Transfers</h2>
+                <p>Your information may be transferred to and maintained on computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those in your jurisdiction. By using our website, you consent to such transfers.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Changes to This Privacy Policy</h2>
+                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. We encourage you to review this Privacy Policy periodically for any changes.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-info">
+                    <h3>EduPortal Privacy Team</h3>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:privacy@eduportal.com">privacy@eduportal.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Address: EduPortal Learning Center, Education District, Knowledge City, New Delhi, India - 110001</p>
+                </div>
+                <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us using the information above.</p>
+            </div>
+            
+            <div class="section">
+                <p><em>This Privacy Policy is designed to comply with general privacy standards and regulations. Please note that this is a template and may need to be adjusted based on specific legal requirements in your jurisdiction.</em></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2023 EduPortal. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add fade-in animation to content
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
