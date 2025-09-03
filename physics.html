@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Class 11 - Chapters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1a237e 100%);
+            color: #e0e0d1;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #e0e0d1;
+            text-shadow: 0 0 10px rgba(77, 182, 172, 0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #d0d0c0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6f61, transparent);
+            margin: 30px 0;
+            border-radius: 50%;
+        }
+
+        /* Chapters List */
+        .chapters-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .chapter-list {
+            list-style: none;
+            counter-reset: chapter-counter;
+        }
+
+        .chapter-item {
+            background: rgba(26, 35, 126, 0.7);
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .chapter-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 111, 97, 0.4);
+            border-color: rgba(255, 111, 97, 0.5);
+        }
+
+        .chapter-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6f61, #4db6ac);
+        }
+
+        .chapter-item::after {
+            content: counter(chapter-counter);
+            counter-increment: chapter-counter;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: rgba(255, 111, 97, 0.3);
+        }
+
+        .chapter-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .chapter-icon {
+            font-size: 30px;
+            margin-right: 20px;
+            color: #ff6f61;
+            text-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .chapter-content {
+            flex: 1;
+        }
+
+        .chapter-name {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: #e0e0d1;
+            font-weight: 600;
+        }
+
+        .chapter-description {
+            font-size: 1rem;
+            color: #d0d0c0;
+            line-height: 1.6;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 70px;
+            height: 70px;
+            border: 6px solid rgba(26, 35, 126, 0.3);
+            border-top: 6px solid #ff6f61;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 30px;
+            background: rgba(26, 35, 126, 0.5);
+            color: #e0e0d1;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(77, 182, 172, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 111, 97, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            color: #a0a090;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .chapter-item {
+                padding: 20px 25px;
+            }
+            
+            .chapter-name {
+                font-size: 1.4rem;
+            }
+            
+            .chapter-icon {
+                font-size: 24px;
+                margin-right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .chapter-item {
+                padding: 18px 20px;
+            }
+            
+            .chapter-name {
+                font-size: 1.3rem;
+            }
+            
+            .chapter-icon {
+                font-size: 20px;
+                margin-right: 12px;
+            }
+            
+            .chapter-item::after {
+                font-size: 1.5rem;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- Back Button -->
+        <a href="class11.html" class="back-button fade-in"><i class="fas fa-arrow-left"></i> Back to Subjects</a>
+        
+        <!-- Header Section -->
+        <div class="header fade-in">
+            <h1 class="page-title">Physics</h1>
+            <p class="page-subtitle">Class 11th - Explore detailed resources for each chapter in Physics</p>
+        </div>
+
+        <!-- Separator Line -->
+        <div class="separator"></div>
+
+        <!-- Chapters Container -->
+        <div class="chapters-container">
+            <ul class="chapter-list">
+                <!-- Chapter 1: Basic Mathematics for Physics -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.1s">
+                    <a href="basic-mathematics.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Basic Mathematics for Physics</h3>
+                            <p class="chapter-description">Essential mathematical concepts and tools required for understanding physics principles.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 2: Vectors -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.2s">
+                    <a href="vectors.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Vectors</h3>
+                            <p class="chapter-description">Study of vector quantities, operations, and their applications in physics.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 3: Units and Measurements -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.3s">
+                    <a href="units-measurements.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-ruler"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Units and Measurements</h3>
+                            <p class="chapter-description">Understanding physical quantities, units, measurement techniques, and errors.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 4: Motion in a Straight Line -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.4s">
+                    <a href="motion-straight-line.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Motion in a Straight Line</h3>
+                            <p class="chapter-description">Study of one-dimensional motion, velocity, acceleration, and kinematic equations.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 5: Motion in a Plane -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.5s">
+                    <a href="motion-plane.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-vector-square"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Motion in a Plane</h3>
+                            <p class="chapter-description">Analysis of two-dimensional motion, projectile motion, and circular motion.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 6: Laws of Motion -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.6s">
+                    <a href="laws-motion.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Laws of Motion</h3>
+                            <p class="chapter-description">Newton's laws of motion, friction, and applications of these principles.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 7: Work, Energy and Power -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.7s">
+                    <a href="work-energy-power.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Work, Energy and Power</h3>
+                            <p class="chapter-description">Concepts of work done, kinetic and potential energy, and power.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 8: System of Particles and Rotational Motion -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.8s">
+                    <a href="rotational-motion.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">System of Particles and Rotational Motion</h3>
+                            <p class="chapter-description">Center of mass, rotational kinematics, and dynamics of rigid bodies.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 9: Gravitation -->
+                <li class="chapter-item fade-in" style="animation-delay: 0.9s">
+                    <a href="gravitation.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Gravitation</h3>
+                            <p class="chapter-description">Kepler's laws, universal law of gravitation, and gravitational potential.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 10: Mechanical Properties of Solids -->
+                <li class="chapter-item fade-in" style="animation-delay: 1.0s">
+                    <a href="mechanical-solids.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Mechanical Properties of Solids</h3>
+                            <p class="chapter-description">Elastic behavior, stress-strain relationship, and elastic moduli.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 11: Mechanical Properties of Fluids -->
+                <li class="chapter-item fade-in" style="animation-delay: 1.1s">
+                    <a href="mechanical-fluids.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Mechanical Properties of Fluids</h3>
+                            <p class="chapter-description">Pressure, Pascal's law, streamline flow, and Bernoulli's principle.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 12: Thermal Properties of Matter -->
+                <li class="chapter-item fade-in" style="animation-delay: 1.2s">
+                    <a href="thermal-properties.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Thermal Properties of Matter</h3>
+                            <p class="chapter-description">Temperature, heat, thermal expansion, and calorimetry.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 13: Thermodynamics -->
+                <li class="chapter-item fade-in" style="animation-delay: 1.3s">
+                    <a href="thermodynamics.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Thermodynamics</h3>
+                            <p class="chapter-description">Laws of thermodynamics, heat engines, and refrigerators.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 14: Oscillations -->
+                <li class="chapter-item fade-in" style="animation-delay: 1.4s">
+                    <a href="oscillations.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Oscillations</h3>
+                            <p class="chapter-description">Simple harmonic motion, damped oscillations, and forced oscillations.</p>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- Chapter 15: Waves -->
+                <li class="chapter-item fade-in" style="animation-delay: 1.5s">
+                    <a href="waves.html" class="chapter-link">
+                        <div class="chapter-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <h3 class="chapter-name">Waves</h3>
+                            <p class="chapter-description">Wave motion, types of waves, Doppler effect, and wave interference.</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2023 EduPortal. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingOverlay = document.getElementById('loading');
+            
+            // Simulate loading time
+            setTimeout(function() {
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.style.visibility = 'hidden';
+                
+                // Add fade-in animation to content
+                document.querySelectorAll('.fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 1200);
+        });
+
+        // Tap animations for mobile
+        document.querySelectorAll('.chapter-link').forEach(link => {
+            link.addEventListener('touchstart', function() {
+                this.parentElement.parentElement.style.transform = 'translateY(-5px)';
+                this.parentElement.parentElement.style.boxShadow = '0 12px 25px rgba(255, 111, 97, 0.4)';
+            });
+            
+            link.addEventListener('touchend', function() {
+                this.parentElement.parentElement.style.transform = 'translateY(0)';
+                this.parentElement.parentElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            });
+        });
+    </script>
+</body>
+  </html>
